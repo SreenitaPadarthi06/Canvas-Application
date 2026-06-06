@@ -12,7 +12,18 @@ function Gallery({ canvasRef }) {
 
   setDrawings(saved);
 }, []);
+  const deleteDrawing = (indexToDelete) => {
+  const updatedDrawings = drawings.filter(
+    (_, index) => index !== indexToDelete
+  );
 
+  setDrawings(updatedDrawings);
+
+  localStorage.setItem(
+    "savedDrawings",
+    JSON.stringify(updatedDrawings)
+  );
+};
   const loadDrawing = (drawing) => {
     canvasRef.current?.loadDrawing(drawing);
   };
@@ -48,26 +59,49 @@ Saved Drawings
   )}
 
   {drawings.map((drawing, index) => (
+  <div
+    key={index}
+    className="relative"
+  >
     <img
-      key={index}
       src={drawing}
       alt={`Drawing ${index}`}
       data-testid={`gallery-item-${index}`}
       onClick={() => loadDrawing(drawing)}
       className="
-        w-40
-        h-28
+        w-44
+        h-32
+        object-cover
+        rounded-xl
         border-2
         border-slate-200
-        rounded-xl
         cursor-pointer
         hover:scale-105
-        hover:shadow-lg
         transition-all
-        duration-300
       "
     />
-  ))}
+
+    <button
+      onClick={() =>
+        deleteDrawing(index)
+      }
+      className="
+        absolute
+        top-1
+        right-1
+        bg-red-500
+        text-white
+        w-7
+        h-7
+        rounded-full
+        font-bold
+        hover:bg-red-700
+      "
+    >
+      ×
+    </button>
+  </div>
+))}
 </div>
     </div>
   );
