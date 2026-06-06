@@ -35,13 +35,19 @@ npm run build
 
 ```
 ## Project Structure
-src/
-├── components/
-│ ├── Canvas.jsx
-│ ├── Toolbar.jsx
-│ └── Gallery.jsx
+
+```text
+src
+│
+├── components
+│   ├── Canvas.jsx
+│   ├── Toolbar.jsx
+│   └── Gallery.jsx
+│
 ├── App.jsx
-└── main.jsx
+├── main.jsx
+└── index.css
+```
 
 ## Author 
 P.K.Sreenita
